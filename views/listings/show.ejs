@@ -1,24 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour</title>
-</head>
-<body>
-    
+<% layout("/layouts/boillerplate.ejs") %>
+ <div class="row mt-2">
+   <div class="col-7 offset-2">
+
     <h3> Listing Details : </h3>
-    <ul>
-        <li><%= listing.title %> </li>
-        <li><%= listing.description %> </li>
-        <li>&#8377;<%= listing.price.toLocaleString("en-IN") %> </li>
-        <li><%= listing.location %> </li>
-        <li><%= listing.country %> </li>
-    </ul>
-    <br>
-    <a href="/listings/<%= listing._id %>/edit">Edit this listing </a>
-    <form action="/listings/<%= listing._id%>?_method=Delete" method="post"><br>
-        <button> Delete this listing </button>
-    </form>
-</body>
-</html>
+
+    <div class="card">
+        <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing-img">
+  <div class="card-body">
+    <p class="card-text">
+        <b><%= listing.title %></b><br>
+        <%= listing.description %> <br>
+        &#8377;<%= listing.price%> <br>
+        <%= listing.location %> <br>
+        <%= listing.country %>  
+    </p>
+  </div>
+    </div>
+
+    <div class="btns">
+      
+      <div class="col- offset-1" style="margin-right: 20px;">
+       <a type="button" href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn">Edit </a>
+       </div>
+
+      <div >
+        <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+          <button class="btn btn-dark  ">Delete </button>
+        </form>
+      </div>
+  </div><br>
+   
+ </div>
+</div>
