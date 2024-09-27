@@ -1,20 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour</title>
-</head>
-<body>
-    <h3>Create new listings </h3>
-    <form action="/listings" method="post" ><br>
-        <input type="text" name="title" placeholder="enter title"><br><br>
-        <textarea name="description"  placeholder="enter description"></textarea><br><br>
-        <input type="text" name="image" placeholder="enter image link"><br><br>
-        <input type="number" name="price" placeholder="enter price"><br><br>
-        <input type="text" name="location" placeholder="enter location"><br><br>
-        <input type="text" name="country" placeholder="enter country"><br><br>
-        <button> Submit </button>
+<% layout("/layouts/boillerplate.ejs") %>
+    <div class="row">
+        <div class="col-7 offset-3">
+     <h3>Create new listings </h3>
+    <form action="/listings" method="post">
+        <div>
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="listing[title]" placeholder="enter title" class="form-control">    
+        </div>
+
+       <div>
+        <label for="description" class="form-label">Description</label>
+        <textarea name="listing[description]"  class="form-control"></textarea><br>
+       </div>
+
+       <div>
+        <label for="image" class="form-label">Image</label>
+        <input type="text" name="listing[image]" placeholder="enter image link" class="form-control"><br>
+       </div>
+        
+       <div class="row">
+        <div class="col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" name="listing[price]" placeholder="1200" class="form-control"><br>
+           </div>
+              
+           <div class="col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" name="listing[location]" placeholder="India" class="form-control"><br>
+           </div>
+       </div>
+
+       <div>
+        <label for="location" class="form-label">Location</label>
+        <input type="text" name="listing[country]" placeholder="sarkanda , bilasur" class="form-control"><br>
+       </div >
+        <button class="btn btn-dark mb-2 edit-btn"> Add </button>
     </form>
-</body>
-</html>
+  </div>
+</div>

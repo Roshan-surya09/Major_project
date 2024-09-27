@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing");
 const path = require("path");
 const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
 
 main().then( () => {
-    console.log("connected to mongoose");
+        console.log("connected to mongoose");
 }).catch((err) => {
     console.log(err);
 });
@@ -19,6 +20,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, "/public")));
 
 //New route
 app.get("/listings/new", (req, res) => {
@@ -81,7 +84,6 @@ app.delete("/listings/:id", async(req, res) => {
 //    console.log("sample was saved");
 //    res.send("successfull testing");
 // });
-
 
 app.get("/", (req, res) => {
     res.send("Hii I am root");
