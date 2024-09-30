@@ -1,30 +1,32 @@
 <% layout("/layouts/boillerplate.ejs") %>
 <body>
-    
+    <div class="row">
+      <div class="main-div">
     <h3> All Listings </h3>
     <!-- <form action="/listings/new" method="get" >
         <button>Create new listing</button>
     </form> -->
-     <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1">
+     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
      
         <% for( let listing of allListings ){ %>
           <a href="/listings/<%= listing._id%>" class="listing-link">
-            <div class="card col " style="width: 20rem;">
+            <div class="card listing-card col-12 " style="width: 25rem;">
              
               <img src="<%= listing.image.url %>" class="card-img-top" alt="listing-img" style="height: 20rem;">
               <div class="card-img-overlay"> Tour </div>
               <div class="card-body ">
                 <p class="card-text">
                   <b><%= listing.title %></b> <br>
-                  &#8377;<%=listing.price%>/Night <br>
+                 <%= listing.location %> <br>
+                  &#8377;<%=listing.price.toLocaleString("en-IN")%>/Night <br>
                 </p>
               </div>
             </div>
             <% } %>    
           </a>
-            
 
      </div>
-    
+    </div>
+</div>
 </body>
 
