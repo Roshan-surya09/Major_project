@@ -4,7 +4,7 @@
 
     <h3><%= listing.title %></h3>
 
-    <div class="card">
+    <div class="card listing-card">
         <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing-img">
   <div class="card-body">
     <p class="card-text">
@@ -47,16 +47,24 @@
     </form><br>
     <hr>
     <p><b>All reviews :</b></p>
+
       <div class="row">
       <% for(let review of listing.reviews) {%>
-        <div class="card">
+        <div class="card col-5 mb-2 ms-2">
             <div class="card-body">
-              <h4 class="card-title"> Roshan </h4>
-              <p class="card-text"> <%= review.comment%> </p>
-              <p class="card-text"> <%= review.rating%> /star </p>
+              <h5 class="card-title"><b> Roshan </b></h5>             
+               <p class="card-text"> <%= review.comment %> </p>
+              <p class="card-text"> <b><%= review.rating%> /star</b> </p>
             </div>
+            
+            <div class="mb-2">
+            <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-sm btn-dark"> Delete </button>
+            </form>
+          </div>
         </div>
         <% } %>
       </div>
+     
    </div>
 </div>
