@@ -47,16 +47,18 @@ body{
 }
 
 /* cards */
+
+.listing-card{
+   border: none !important;
+   margin-bottom: 2rem !important;
+}
+
 .card-img-top{
    border-radius: 1rem !important;
    width: 100% !important;
    object-fit: cover !important;
 }
 
-.card{
-   border: none !important;
-   margin-bottom: 2rem !important;
-}
 .card-body{
    padding: 0 !important;
 }
