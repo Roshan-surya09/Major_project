@@ -7,7 +7,8 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/expressError.js");
-const { listingSchema }  = require("./schema.js");
+const { listingSchema, reviewSchema }  = require("./schema.js");
+const Review = require("./models/review.js");
 
 main().then( () => {
         console.log("connected to mongoose");
@@ -31,8 +32,21 @@ app.get("/listings/new", (req, res) => {
     res.render("listings/new.ejs");
 });
 
+//for new listing
 const validateListing = (req, res, next) => {
     let { error } = listingSchema.validate(req.body);
+    if(error){
+        let newMsg = error.details.map((el) => el.message).join(",");
+        // console.log(newMsg);
+        throw new ExpressError(400, newMsg);
+    }else{
+        next();
+    };
+};
+
+// For review
+const reviewValidate = (req, res, next) => {
+    let { error } = reviewSchema.validate(req.body);
     if(error){
         let newMsg = error.details.map((el) => el.message).join(",");
         // console.log(newMsg);
@@ -45,7 +59,7 @@ const validateListing = (req, res, next) => {
 //Show route
 app.get("/listings/:id",wrapAsync(async(req, res) => {
     let { id } = req.params;
-    let listing = await Listing.findById(id);
+    let listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs", { listing });
 }));
 
@@ -88,6 +102,31 @@ app.delete("/listings/:id",wrapAsync(async(req, res) => {
 app.get("/", (req, res) => {
     res.send("Hii I am root");
 });
+
+// const review = async() => {
+//     let review1 = new Review({
+//         comment: 'nice place',
+//         rating: 1,
+//     });
+
+//     await review1.save();
+//     console.log("review data saved");
+// };
+//    review();
+
+
+//for review route
+app.post("/listings/:id/reviews",reviewValidate, wrapAsync(async(req, res) => {
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review(req.body.review);
+
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+    
+    res.redirect(`/listings/${listing._id}`);
+}));
 
 // app.get("/test", async (req, res) => {
 //    let sampleListing = new Listing({
