@@ -1,0 +1,25 @@
+<% layout("/layouts/boillerplate.ejs") %>
+
+<div class="row mt-2">
+    <h1 class="col-6 offset-3" > signup on wonderlust :  </h1>
+    <div class="col-6 offset-3">
+        <form method="post" action="/signup"  novalidate class="needs-validation">
+
+            <div class="col-md-8">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control" required>
+                <div class="valid-feedback">looks good !! </div> 
+                  
+                <label for="email" class="form-label"> Email </label>
+                <input type="text" name="email" id="email" class="form-control" required>
+                <div class="valid-feedback">looks good !! </div>
+
+                <label for="password" class="form-label"> Password </label>
+                <input type="password" name="password" id="password" class="form-control" required>
+                <div class="valid-feedback">looks good !! </div>
+               </div> <br>
+               
+               <button class="btn btn-success"> signUp</button>
+        </form>
+    </div>
+</div>
