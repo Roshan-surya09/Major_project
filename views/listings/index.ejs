@@ -1,6 +1,6 @@
 <% layout("/layouts/boillerplate.ejs") %>
 <body>
-    <div class="row mt-2">
+    <div class="row mt-2" style="margin-left: 30px; margin-right: 50px;">
       <div class="main-div">
     <h3> All Listings </h3>
     <!-- <form action="/listings/new" method="get" >
@@ -18,7 +18,7 @@
                 <p class="card-text">
                   <b><%= listing.title %></b> <br>
                  <%= listing.location %> <br>
-                  &#8377;<%=listing.price.toLocaleString("en-IN")%>/Night <br>
+                  &#8377;<%=listing.price%>/Night <br>
                 </p>
               </div>
             </div>
