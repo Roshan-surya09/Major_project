@@ -56,6 +56,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     res.locals.message = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
     next();
 });
 
@@ -69,11 +70,6 @@ app.use((req, res, next) => {
 //    res.send(registerUser);
 // });
 
-
-//New route
-app.get("/listings/new", (req, res) => {
-    res.render("listings/new.ejs");
-});
 
 // For express routes
 app.use("/listings", listingsRouter);

@@ -19,7 +19,6 @@ const reviewValidate = (req, res, next) => {
     };
 };
 
-
 //for review route
 router.post("/",reviewValidate, wrapAsync(async(req, res) => {
     let listing = await Listing.findById(req.params.id);
