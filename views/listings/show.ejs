@@ -7,17 +7,18 @@
     <div class="card listing-card">
         <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing-img">
   <div class="card-body">
-    <p class="card-text">
-        <%= listing.description %> <br>
-        &#8377;<%= listing.price%> <br>
-        <%= listing.location %> <br>
-        <%= listing.country %>  
+    
+    <p class="card-text">owned by-  <i> <%= listing.owner.username %></i></p>
+        <p class="card-text" > <%= listing.description %></p>
+       <p class="card-text">  &#8377;<%= listing.price%></p>
+      <p class="card-text">   <%= listing.location %></p>
+      <p class="card-text">  <%= listing.country %></p>
     </p>
   </div>
     </div>
 
     <div class="btns">
-      
+     
       <div class="col- offset-1" style="margin-right: 20px;">
        <a type="button" href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn">Edit </a>
        </div>
@@ -27,6 +28,7 @@
           <button class="btn btn-dark  ">Delete </button>
         </form>
       </div>
+     
   </div><br>
  </div>
     

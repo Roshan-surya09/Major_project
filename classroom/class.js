@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     res.locals.message = req.flash("info");
     res.locals.error = req.flash("error");
     next();
-})
+});
 
 app.get("/register", (req, res) => {
     let { name = "anonymous" } =  req.query;
