@@ -1,3 +1,4 @@
+const Review = require("./models/review");
 const Listing = require("./models/listing");
 
 module.exports.isLoggedIn = (req, res , next) => {
@@ -25,3 +26,25 @@ module.exports.isOwner = async( req, res, next) => {
     }
     next();
 }
+
+module.exports.isReviewAuthor = async(req, res, next) => {
+    let {id, reviewId} = req.params;
+    let review = await Review.findById(reviewId);
+    if(!review.author.equals(res.locals.currUser._id)){
+        req.flash("error", "You are not the outhor of this listing")
+        return res.redirect(`/listing${id}`);
+    }
+
+    next();
+}
+
+// For review
+const reviewValidate = (req, res, next) => {
+    let { error } = reviewSchema.validate(req.body);
+    if(error){
+        let newMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, newMsg);
+    }else{
+        next();
+    };
+};

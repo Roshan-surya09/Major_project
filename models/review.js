@@ -12,6 +12,10 @@ const reviewSchema = new Schema({
         type: Date,
         default: Date.now().toString().split(" ").slice(0,4).join("-"),
     },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
 });
 
 
