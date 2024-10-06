@@ -78,7 +78,7 @@ app.all("*", (req, res, next) => {
 
 //Error handling middlewar
 app.use((err, req, res, next) => {
-    let { status=404 , message="Page not found"} = err;
+    let { status , message} = err;
     res.status(status).render("error.ejs", { message});
 });
 
