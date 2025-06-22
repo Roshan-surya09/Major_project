@@ -39,7 +39,7 @@ module.exports.isReviewAuthor = async(req, res, next) => {
 }
 
 // For review
-const reviewValidate = (req, res, next) => {
+module.exports.reviewValidate = (req, res, next) => {
     let { error } = reviewSchema.validate(req.body);
     if(error){
         let newMsg = error.details.map((el) => el.message).join(",");
