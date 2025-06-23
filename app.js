@@ -70,10 +70,10 @@ app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
 
 
-//Home route
-app.get("/", (req, res) => {
-    res.send("Hii I am root");
-});
+// //Home route
+// app.get("/", (req, res) => {
+//     res.send("Hii I am root");
+// });
 
 //for all route handler
 app.all("*", (req, res, next) => {
